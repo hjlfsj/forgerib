@@ -209,9 +209,9 @@ int main(int argc, char **argv) {
 		vme_entries,
 		output_file,
 		10000, // window 50*200ns
-		10,    //lookhead 10
-		5000,
-		10000,
+		100,    //lookhead 10,100
+		1000,
+		1000,
 		true
 	);
 

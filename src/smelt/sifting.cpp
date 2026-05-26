@@ -116,9 +116,10 @@ int Sift(
 		}
 		if (!match && !(anchor_xia+vme_window < xia_times.size()-1 && anchor_vme+xia_window < vme_times.size()-1))
 		{
-			is_lookhead = false;  
+			is_lookhead = false;
 		}
-		if (!match && anchor_xia+vme_window < xia_times.size()-1 && anchor_vme+xia_window < vme_times.size()-1)
+		found = false;
+		while (!match && !found && anchor_xia+vme_window < xia_times.size()-1 && anchor_vme+xia_window < vme_times.size()-1)
 		{
 			std::cout << "Matching stalled at XIA idx " << anchor_xia << ". Re-anchoring..." << std::endl;
 			size_t ref_xia = anchor_xia + 1;
@@ -150,19 +151,22 @@ int Sift(
 						opt.Fill();
 						++align_events;
 					}
-				}
+				std::cerr << "Find next anchor: " <<".\n";
+				// return -1;
+				// break;
+				std::cout << "Anchor at XIA entry " << anchor_xia << ", VME entry " << anchor_vme << "\n";
 				break;
+				}
 			}
 
 			if (!found)
 			{
 				std::cerr << "Could not find anchor in XIA window "
 				<< xia_window << ", VME window " << vme_window << ".\n";
-				return -1;
-			}
-
-			if (report) {
+				// return -1;
+				// break;
 				std::cout << "Anchor at XIA entry " << anchor_xia << ", VME entry " << anchor_vme << "\n";
+				std::cout << "try next window" << std::endl;
 			}
 		}
 
