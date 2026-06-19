@@ -45,10 +45,10 @@ int Sift(
     size_t anchor_xia = -1;
 	size_t anchor_vme = -1;
 	bool found = false;
-	for (anchor_xia = 2; anchor_xia < xia_window; ++anchor_xia) {
+	for (anchor_xia = 2; anchor_xia < xia_window*100; ++anchor_xia) {
 		double xia_dt0 = xia_times[anchor_xia-1] - xia_times[anchor_xia-2];
 		double xia_dt1 = xia_times[anchor_xia] - xia_times[anchor_xia-1];
-		for (anchor_vme = 0; anchor_vme < vme_window-2; ++anchor_vme) {
+		for (anchor_vme = 0; anchor_vme < vme_window*100-2; ++anchor_vme) {
 			if (
 				fabs(vme_dt[anchor_vme]-xia_dt0) <  window
 				&& fabs(vme_dt[anchor_vme+1]-xia_dt1) < window

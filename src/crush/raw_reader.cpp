@@ -27,7 +27,7 @@ RawReader::~RawReader() {
 	if (handle_.is_open()) handle_.close();
 }
 
-void CorrectSpecialHeader(unsigned int *data) {
+void CorrectSpecialHeader(unsigned int *data) {     // skip error headers and special conditions
 	unsigned int event_length = (data[0] >> 17) & 0x3fff;
 	unsigned int header_length = (data[0] >> 12) & 0x1f;
 	unsigned int trace_length = (data[3] >> 16) & 0x7fff;

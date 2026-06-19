@@ -23,6 +23,7 @@ using namespace forgerib;
 
 constexpr size_t kSlotNum = 1000;
 
+
 int ReadAlignEvents(
 	const char *path,
 	std::map<long long, long long> &entry_map,
