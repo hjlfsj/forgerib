@@ -74,7 +74,7 @@ struct Csi_trace_Event {
 	// bool valid[21];
 	double time[21];
 	int energy[21];
-	uint16_t samples[21][1000];
+	uint16_t samples[21][5000];
 	int index[21];
 	int hit_num;
 };
