@@ -20,7 +20,7 @@ struct RawCsi_trace_Event
 	double time;
 	bool cv;
 	int length;
-	uint16_t samples[5000];
+	uint16_t samples[1000];
 	bool out_of_range;
 };
 

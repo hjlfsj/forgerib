@@ -25,7 +25,7 @@ void UpdateCsiEvent(const RawCsi_trace_Event &raw, Csi_trace_Event &csi) {
 	csi.energy[csi.hit_num] = raw.energy;
 	csi.index[csi.hit_num] = raw.index;
 	csi.time[csi.hit_num] = raw.time;
-	for (int i=0; i<5000; i++) {csi.samples[csi.hit_num][i] = raw.samples[i];}
+	for (int i=0; i<1000; i++) {csi.samples[csi.hit_num][i] = raw.samples[i];}
 	csi.hit_num += 1;
 
 	}
