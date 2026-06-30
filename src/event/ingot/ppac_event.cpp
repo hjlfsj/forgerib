@@ -17,4 +17,10 @@ void SetupOutput(TTree *tree, PpacEvent &event) {
 	tree->Branch("energy", event.energy, "e[15]/I");
 }
 
+
+void Reset(PpacEvent &event) {
+	event.flag = 0;
+	for (int i = 0; i < 15; ++i) event.valid[i] = false;
+}
+
 }

@@ -50,6 +50,8 @@ int SmeltDetector(
 		if (vme_entries[entry] >= 0) {
 			vme_tree->GetEntry(vme_entries[entry]);
 			event = vme_event;
+		} else {
+			Reset(event);
 		}
 		opt.Fill();
 	}

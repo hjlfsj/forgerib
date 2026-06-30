@@ -16,6 +16,7 @@
 #include "include/event/ingot/csi_event.h"
 #include "include/event/ingot/dssd_event.h"
 #include "include/event/ingot/tafd_event.h"
+#include "include/event/ingot/ppac_event.h"
 #include "include/smelt/smelt_beam.h"
 #include "include/smelt/smelt_detector.h"
 #include "include/smelt/smelt_ppac.h"
@@ -157,7 +158,8 @@ bool NeedsVmeRun(const std::string &detector) {
 		|| detector == "t1csiu"
 		|| detector == "t1csid"
 		|| detector == "tafd"
-		|| detector == "tafcsi";
+		|| detector == "tafcsi"
+		|| detector == "vppac";
 }
 
 } // namespace
@@ -180,7 +182,7 @@ int main(int argc, char **argv) {
 		)
 		(
 			"r,run",
-			"XIA run number.",
+			"XIA and VME run number.",
 			cxxopts::value<int>(),
 			"run"
 		)
@@ -198,7 +200,7 @@ int main(int argc, char **argv) {
 		)
 		(
 			"detectors",
-			"Detector list: ppac, t0d1, t0d2, t0d3, t0d4, t0s, t1su, t1sd, t0csi, t0csi_trace, beam, t1du, t1dd, t1csiu, t1csid, tafd, tafcsi",
+			"Detector list: ppac, vppac, t0d1, t0d2, t0d3, t0d4, t0s, t1su, t1sd, t0csi, t0csi_trace, beam, t1du, t1dd, t1csiu, t1csid, tafd, tafcsi",
 			cxxopts::value<std::vector<std::string>>(),
 			"detector"
 		);
@@ -212,6 +214,7 @@ int main(int argc, char **argv) {
 
 	const bool has_run = parse_result.count("run") > 0;
 	const bool has_xia_run = parse_result.count("xia-run") > 0;
+	const bool has_vme_run = parse_result.count("vme-run") > 0;
 	if (!has_run && !has_xia_run) {
 		std::cout << options.help() << "\n";
 		return 0;
@@ -256,13 +259,13 @@ int main(int argc, char **argv) {
 		detectors.end(),
 		NeedsVmeRun
 	);
-	if (require_vme && !parse_result.count("vme-run")) {
-		std::cerr << "Error: --vme-run is required for fused detectors.\n";
+	if (require_vme && !has_vme_run && !has_run) {
+		std::cerr << "Error: --vme-run is required for VME detectors.\n";
 		return -1;
 	}
 	const int vme_run = parse_result.count("vme-run")
 		? parse_result["vme-run"].as<int>()
-		: -1;
+		: parse_result["run"].as<int>();
 
 	const std::string grit_dir = forgerib::JoinPath(config.workspace, config.paths.grit);
 	const std::string grain_dir = forgerib::JoinPath(config.workspace, config.paths.grain);
@@ -452,6 +455,14 @@ int main(int argc, char **argv) {
 				GritVmeInputPath(grit_dir, "tafcsi", vme_run).Data(),
 				IngotOutputPath(ingot_dir, "tafcsi", trigger_type, xia_run).Data(),
 				"tafcsi",
+				true
+			);
+		} else if (detector == "vppac") {
+			result = forgerib::SmeltDetector<forgerib::PpacEvent>(
+				vme_entries,
+				GritVmeInputPath(grit_dir, "ppac", vme_run).Data(),
+				IngotOutputPath(ingot_dir, "vppac", trigger_type, xia_run).Data(),
+				"vppac",
 				true
 			);
 		} else {

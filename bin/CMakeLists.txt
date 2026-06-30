@@ -48,6 +48,7 @@ target_link_libraries(
 	tafd_event
 	align_event
 	trigger_event
+	ppac_event
 	ROOT::Core
 	ROOT::Hist
 	ROOT::RIO

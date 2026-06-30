@@ -22,4 +22,9 @@ void SetupOutput(TTree *tree, TafdEvent &event) {
 	tree->Branch("front_time", event.front_time, "ft[6]/D");
 }
 
+void Reset(TafdEvent &event) {
+	event.flag = 0;
+	for (int i = 0; i < 6; ++i) event.valid[i] = false;
+}
+
 }

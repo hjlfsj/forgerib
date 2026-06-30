@@ -19,6 +19,7 @@ void SetupInput(TTree *tree, TafdEvent &event, const std::string &prefix = "");
 
 void SetupOutput(TTree *tree, TafdEvent &event);
 
+void Reset(TafdEvent &event);
 }
 
 #endif
