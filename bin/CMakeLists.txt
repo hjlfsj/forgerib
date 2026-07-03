@@ -28,6 +28,15 @@ target_link_libraries(
 	ROOT::Core ROOT::RIO ROOT::Tree ROOT::Graf
 )
 
+add_executable(pre_coke_ppac pre_coke_ppac.cpp)
+target_link_libraries(
+	pre_coke_ppac
+	PRIVATE
+	config
+	raw_trigger_event raw_ppac_event
+	ROOT::Core ROOT::RIO ROOT::Tree ROOT::Graf
+)
+
 add_executable(smelt smelt.cpp)
 target_link_libraries(
 	smelt

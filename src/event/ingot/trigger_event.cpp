@@ -12,16 +12,16 @@ void SetupInput(TTree *tree, TriggerEvent &event, const std::string &prefix) {
 
 void SetupOutput(TTree *tree, TriggerEvent &event) {
 	tree->Branch("flag", &event.flag, "flag/I");
-	tree->Branch("valid", event.valid, "valid[6]/O");
-	tree->Branch("time", event.time, "time[6]/D");
-	tree->Branch("external_time", event.external_time, "ets[6]/L");
+	tree->Branch("valid", event.valid, "valid[7]/O");
+	tree->Branch("time", event.time, "time[7]/D");
+	tree->Branch("external_time", event.external_time, "ets[7]/L");
 	tree->Branch("vme_entry", &event.vme_entry, "ve/L");
 }
 
 void Reset(TriggerEvent &event) {
 	event.flag = 0;
 	event.vme_entry = -1;
-	for (int i = 0; i < 6; ++i) {
+	for (int i = 0; i < 7; ++i) {
 		event.valid[i] = false;
 		event.time[i] = 0.0;
 		event.external_time[i] = 0;

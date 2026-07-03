@@ -12,6 +12,7 @@ constexpr int kTriggerT0D1 = 2;
 constexpr int kTriggerT0D2 = 3;
 constexpr int kTriggerT0S = 4;
 constexpr int kTriggerMain = 5;
+constexpr int kTriggerPPAC3 = 6;
 
 struct RawTriggerEvent {
 	int type;

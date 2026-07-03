@@ -23,7 +23,6 @@ using namespace forgerib;
 
 constexpr size_t kSlotNum = 1000;
 
-
 int ReadAlignEvents(
 	const char *path,
 	std::map<long long, long long> &entry_map,
@@ -55,6 +54,7 @@ int ReadAlignEvents(
 	}
 	if (report) {
 		printf("\b\b\b\b100%%\n");
+        printf("Align valid: %ld\n", entry_map.size());
 	}
 	ipf.Close();
 	return 0;
@@ -92,6 +92,7 @@ int ReadVmeValid(
 	}
 	if (report) {
 		printf("\b\b\b\b100%%\n");
+        printf("VME T1 valid: %ld\n", vme_valid.size());
 	}
 	ipf.Close();
 	return 0;

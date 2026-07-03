@@ -126,8 +126,8 @@ int ReadTrigger(
 			fflush(stdout);
 		}
 		ipt->GetEntry(entry);
-		if (!trigger_event.valid[forgerib::kTriggerMain]) continue;
-		trigger.push_back(trigger_event.time[forgerib::kTriggerMain]);
+		if (!trigger_event.valid[forgerib::kTriggerPPAC3]) continue;     // only use PPAC3 trigger
+		trigger.push_back(trigger_event.time[forgerib::kTriggerPPAC3]);
 		vme_entries.push_back(trigger_event.vme_entry);
 	}
 	if (report) {

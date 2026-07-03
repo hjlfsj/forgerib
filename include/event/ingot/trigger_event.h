@@ -8,9 +8,9 @@ namespace forgerib {
 
 struct TriggerEvent {
 	int flag;
-	bool valid[6];
-	double time[6];
-	long long external_time[6];
+	bool valid[7];
+	double time[7];
+	long long external_time[7];
 	long long vme_entry;
 };
 

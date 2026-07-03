@@ -661,7 +661,7 @@ int main(int argc, char **argv) {
 			|| HasDssdTrigger(t1du_event)
 			|| HasDssdTrigger(t1dd_event)
 			|| HasCsiTrigger(t1dcsi_event)
-			|| HasCsiTrigger(t1ucsi_event);
+			|| HasCsiTrigger(t1ucsi_event);   // has real event
 
 		tafd_tree.Fill();
 		t1du_tree.Fill();

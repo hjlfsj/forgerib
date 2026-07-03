@@ -1,4 +1,5 @@
 workspace = "/data/disk1/ribll2026_www_data"  # workspace for output files
+# workspace = "/data/disk1/delta"
 trigger = "main"
 jump_run = [112]
 
