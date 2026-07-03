@@ -13,6 +13,9 @@ target_link_libraries(smelt_beam PUBLIC beam_event raw_beam_event)
 add_library(smelt_ssd smelt_ssd.cpp)
 target_link_libraries(smelt_ssd PUBLIC silicon_event raw_ssd_event)
 
+add_library(smelt_t0s_trace smelt_t0s_trace.cpp)
+target_link_libraries(smelt_t0s_trace PUBLIC silicon_event raw_ssd_event)
+
 add_library(smelt_t0csi_bloom smelt_t0csi_bloom.cpp)
 target_link_libraries(smelt_t0csi_bloom PUBLIC csi_event raw_csi_event)
 

@@ -126,8 +126,8 @@ int ReadTrigger(
 			fflush(stdout);
 		}
 		ipt->GetEntry(entry);
-		if (!trigger_event.valid[forgerib::kTriggerPPAC3]) continue;     // only use PPAC3 trigger
-		trigger.push_back(trigger_event.time[forgerib::kTriggerPPAC3]);
+		if (!trigger_event.valid[forgerib::kTriggerMain]) continue;     
+		trigger.push_back(trigger_event.time[forgerib::kTriggerMain]);
 		vme_entries.push_back(trigger_event.vme_entry);
 	}
 	if (report) {
@@ -200,7 +200,7 @@ int main(int argc, char **argv) {
 		)
 		(
 			"detectors",
-			"Detector list: ppac, vppac, t0d1, t0d2, t0d3, t0d4, t0s, t1su, t1sd, t0csi, t0csi_trace, beam, t1du, t1dd, t1csiu, t1csid, tafd, tafcsi",
+			"Detector list: ppac, vppac, t0d1, t0d2, t0d3, t0d4, t0s, t0s_trace, t1su, t1sd, t0csi, t0csi_trace, beam, t1du, t1dd, t1csiu, t1csid, tafd, tafcsi",
 			cxxopts::value<std::vector<std::string>>(),
 			"detector"
 		);
@@ -333,6 +333,14 @@ int main(int argc, char **argv) {
 				triggers,
 				GritInputPath(grit_dir, "t0s", xia_run).Data(),
 				IngotOutputPath(ingot_dir, "t0s", trigger_type, xia_run).Data(),
+				1000.0,
+				true
+			);
+		} else if (detector == "t0s_trace") {
+			result = forgerib::SmeltT0s_trace(
+				triggers,
+				GritInputPath(grit_dir, "t0s_trace", xia_run).Data(),
+				IngotOutputPath(ingot_dir, "t0s_trace", trigger_type, xia_run).Data(),
 				1000.0,
 				true
 			);

@@ -49,6 +49,7 @@ target_link_libraries(
 	smelt_t0d4
 	smelt_beam
 	smelt_ssd
+	smelt_t0s_trace
 	smelt_t0csi_bloom # only have XIA's T0CsI
 	smelt_t0csi       # have T0CsI in both vme and XIA
 	smelt_t0csi_trace

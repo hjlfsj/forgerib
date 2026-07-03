@@ -230,10 +230,16 @@ int RawReader::Read(
 	int trace_length = (header_.data[3] >> 16) & 0x7fff;
 	int trace_out_of_range = header_.data[3] >> 31;
 	if (trace) {
-		trace->length = trace_length;
 		trace->out_of_range = trace_out_of_range == 1;
-		handle_.read((char*)(trace->samples), trace_length*2);
-		bytes += handle_.gcount();
+		if (trace_length > 1000) {
+			trace->length = 1000;
+			handle_.read((char*)(trace->samples), 2000);
+			handle_.seekg((trace_length - 1000) * 2, std::ios_base::cur);
+		} else {
+			trace->length = trace_length;
+			handle_.read((char*)(trace->samples), trace_length * 2);
+		}
+		bytes += trace_length * 2;
 	} else {
 		auto last_pos = handle_.tellg();
 		handle_.seekg(trace_length*2, std::ios_base::cur);
