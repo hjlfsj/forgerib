@@ -301,7 +301,7 @@ int main(int argc, char **argv) {
 				triggers,
 				GritInputPath(grit_dir, "t0d1", xia_run).Data(),
 				IngotOutputPath(ingot_dir, "t0d1", trigger_type, xia_run).Data(),
-				1200.0,
+				1000.0,
 				true
 			);
 		} else if (detector == "t0d2") {

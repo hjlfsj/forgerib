@@ -17,25 +17,30 @@ namespace {
 
 constexpr size_t kSlotNum = 1000;
 
+constexpr int T0D1_Front_Threshold = 150;
+constexpr int T0D1_Back_Threshold = 450;
+
 void ResetDssdEvent(DssdEvent &dssd) {
 	dssd.front_num = 0;
 	dssd.back_num = 0;
 }
+
+constexpr int kDssdMaxHits = 32;
 
 void InsertHit(
 	int strip,
 	int energy,
 	double time,
 	int &num,
-	int strips[8],
-	double energies[8],
-	double times[8]
+	int strips[kDssdMaxHits],
+	double energies[kDssdMaxHits],
+	double times[kDssdMaxHits]
 ) {
 	int pos = 0;
 	while (pos < num && energies[pos] >= energy) ++pos;
-	if (pos >= 8) return;
+	if (pos >= kDssdMaxHits) return;
 
-	int limit = std::min(num, 7);
+	int limit = std::min(num, kDssdMaxHits-1);
 	for (int i = limit; i > pos; --i) {
 		strips[i] = strips[i-1];
 		energies[i] = energies[i-1];
@@ -44,12 +49,12 @@ void InsertHit(
 	strips[pos] = strip;
 	energies[pos] = energy;
 	times[pos] = time;
-	if (num < 8) ++num;
+	if (num < kDssdMaxHits) ++num;
 }
 
 void FillHit(const RawDssdEvent &raw, DssdEvent &dssd) {
 	if (raw.side == kDssdSideFront) {
-		if (raw.energy < 150) return;
+		if (raw.energy < T0D1_Front_Threshold) return;
 		InsertHit(
 			raw.strip,
 			raw.energy,
@@ -60,7 +65,7 @@ void FillHit(const RawDssdEvent &raw, DssdEvent &dssd) {
 			dssd.front_time
 		);
 	} else if (raw.side == kDssdSideBack) {
-		if (raw.energy < 400) return;
+		if (raw.energy < T0D1_Back_Threshold) return;
 		InsertHit(
 			raw.strip,
 			raw.energy,
