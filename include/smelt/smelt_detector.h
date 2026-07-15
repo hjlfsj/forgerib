@@ -29,7 +29,7 @@ int SmeltDetector(
 	SetupInput(vme_tree, vme_event);
 
 	TFile opf(output_path, "recreate");
-	TTree opt("tree", "fused T1 DSSD");
+	TTree opt("tree", TString::Format("fused %s", detector_name));
 	Event event;
 	SetupOutput(&opt, event);
 
