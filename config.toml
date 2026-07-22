@@ -1,7 +1,7 @@
 workspace = "/data/disk1/ribll2026_www_data"  # workspace for output files
 # workspace = "/data/disk1/delta"
 trigger = "main"
-jump_run = [112]
+jump_run = [63, 81, 112]
 
 [paths]
 raw_xia0 = "/data/disk0/raw/xia0"
