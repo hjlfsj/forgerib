@@ -19,6 +19,19 @@ target_link_libraries(
 	ROOT::Core
 )
 
+add_executable(calib_vme_alpha calib_vme_alpha.cpp)
+target_include_directories(calib_vme_alpha PRIVATE ${PROJECT_SOURCE_DIR} ${ROOT_INCLUDE_DIRS})
+target_link_libraries(
+	calib_vme_alpha
+	PRIVATE
+	ROOT::Core
+	ROOT::RIO
+	ROOT::Tree
+	ROOT::Hist
+	ROOT::Spectrum
+	ROOT::Graf
+)
+
 add_executable(coke coke.cpp)
 target_link_libraries(
 	coke
