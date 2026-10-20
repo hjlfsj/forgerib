@@ -1,0 +1,30 @@
+workspace = "/data/disk1/ribll2026_www_data"  # workspace for output files
+# workspace = "/data/disk1/delta"
+trigger = "main"
+jump_run = [63, 81, 112]
+
+[paths]
+
+# run 0-131
+# raw_xia0 = "/data/disk0/raw/xia0"
+# raw_xia1 = "/data/disk0/raw/xia1"
+# raw_xia2 = "/data/disk0/raw/xia2"
+
+# run 132-203
+raw_xia0 = "/data/disk2/raw/xia0"
+raw_xia1 = "/data/disk2/raw/xia1"
+raw_xia2 = "/data/disk2/raw/xia2"   
+
+
+
+raw_vme = "/data/disk4/vme/root_file"
+ore = "ore"  # vme decode files 
+grit = "grit"  # XIA decode files 
+grain = "grain"  # time sift 
+ingot = "ingot"  # event files 
+
+[prefix]
+raw_xia0 = "data"
+raw_xia1 = "data"
+raw_xia2 = "data"
+raw_vme = "data"
