@@ -1,4 +1,8 @@
-workspace = "/data/disk1/ribll2026_www_data"  # workspace for output files
+# for CH2 data run>=159, the decode data is in disk5
+
+
+# workspace = "/data/disk1/ribll2026_www_data"  # workspace for output files
+workspace = "/data/disk5/ribll2026_www_data"  # workspace for output files
 # workspace = "/data/disk1/delta"
 trigger = "main"
 jump_run = [63, 81, 112]

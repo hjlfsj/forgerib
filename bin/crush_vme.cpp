@@ -316,7 +316,6 @@ void FillTafdEvent(
 			int energy = AdcEnergy(input, ref);
 			int time_channel = 32 + det * 16 + strip;
 			if (energy < threshold.tafd[det].front[strip] || energy >= 4096) continue;
-			if (input.gmulti[0][time_channel] <= 0) continue;
 			if (BetterCandidate(energy, strip, best_front_energy, best_front_strip)) {
 				best_front_energy = energy;
 				best_front_strip = strip;
@@ -361,7 +360,7 @@ void FillDssdEvent(
 	for (int strip = 0; strip < 32; ++strip) {
 		ChannelRef front = T1FrontChannel(up, strip);
 		int front_energy = AdcEnergy(input, front);
-		if (front_energy >= threshold.front[strip] && input.gmulti[time_bank][time_base + strip] > 0) {
+		if (front_energy >= threshold.front[strip]) {
 			InsertDssdHit(
 				strip,
 				front_energy,

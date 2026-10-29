@@ -1,7 +1,7 @@
 # VME Alpha Calibration Results
 # Alpha energies: 5.486 MeV, 5.805 MeV
 # E = k * ADC_channel + b   (MeV)
-#  tafd5 ch1 损坏
+#  tafd5 ch1 is bad
 detector    face    strip  peak_low_ch peak_low_epeak_high_chpeak_high_ek(MeV/ch)       b(MeV)      valid   entries   
 tafd0       front   0      922.5       0.1       969.7       0.2       0.006759        -0.7496     yes     5189.0000 
 tafd0       front   1      880.2       0.1       924.6       0.1       0.007177        -0.8309     yes     5683.0000 
